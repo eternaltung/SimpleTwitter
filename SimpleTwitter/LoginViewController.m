@@ -12,9 +12,9 @@
 #import "User.h"
 
 @interface LoginViewController ()
-- (IBAction)LoginTap:(UIButton *)sender;
+@property (strong, nonatomic) User *user;
 
-- (IBAction)getHomeTimeLine:(UIButton *)sender;
+- (IBAction)LoginTap:(UIButton *)sender;
 
 @end
 
@@ -43,20 +43,12 @@
 - (IBAction)LoginTap:(UIButton *)sender {
     [[TwitterClient shareInstance] loginCompleted:^(User *user, NSError *error) {
         if (user != nil) {  //login success
-            
+            self.user = user;
+            UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            [self presentViewController:[sb instantiateViewControllerWithIdentifier:@"MainView"] animated:YES completion:nil];
         }
         else{   //error
             
-        }
-    }];
-    
-    
-}
-
-- (IBAction)getHomeTimeLine:(UIButton *)sender {
-    [[TwitterClient shareInstance] getHomeTimeline:^(NSArray *array, NSError *error) {
-        for (Tweet *tweet in array) {
-            NSLog(@"%@",tweet.text);
         }
     }];
 }

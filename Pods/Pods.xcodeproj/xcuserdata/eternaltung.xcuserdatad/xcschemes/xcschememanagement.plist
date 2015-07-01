@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SimpleTwitter-DateTools.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SimpleTwitter-SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26FC18AE2DBE2C025B08A796</key>
+		<key>27DB3BE914D6E1253C0D8A19</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5304F222354E45811FADB16E</key>
+		<key>59E040339978C566028FC448</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BD1C69659E72468DEEEFB4A</key>
+		<key>6CD4DE0EA686A8D2A5996282</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E6F3571E3F110E9410F66F40</key>
+		<key>90E688DA22B86C2236684A1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF58F5C9D22E5D46D57E4A15</key>
 		<dict>
 			<key>primary</key>
 			<true/>

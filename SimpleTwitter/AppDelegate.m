@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "TwitterClient.h"
+#import "MainViewController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,8 +19,28 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:85.0f/255.0f green:172.0f/255.0f blue:238.0f/255.0f alpha:1.0f]];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLogout) name:userLogoutNotification object:nil];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    User *user = [User currentUser];
+    if (user != nil) {
+        MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+        self.window.rootViewController = mainView;
+    }
+    else{
+        self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
+    }
+    
+    [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)userLogout{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
