@@ -1,6 +1,6 @@
 This is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 
+Time spent: 18 hr
 
 ## Steps to run
 
@@ -28,14 +28,17 @@ Time spent:
 - [X] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
 - [X] Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
 - [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
-- [X] User can compose a new tweet with with current geo location.
+- [X] User can compose a new tweet with current geo location.
 
 ### Walkthrough
 
-![Video Walkthrough](...)
+![Video Walkthrough](Demo.gif)
 
 Credits
 ---------
 * [AFNetworking](https://github.com/AFNetworking/AFNetworking)
 * [DateTools](https://github.com/MatthewYork/DateTools)
+* [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh)
+* [BDBOAuth1Manager](https://github.com/bdbergeron/BDBOAuth1Manager)
+* [TTTAttributedLabel](https://github.com/TTTAttributedLabel/TTTAttributedLabel)
 

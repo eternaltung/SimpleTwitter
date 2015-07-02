@@ -29,6 +29,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *ReplyTextBox;
 @property (weak, nonatomic) IBOutlet UIImageView *fromRetweetImg;
 @property (weak, nonatomic) IBOutlet UILabel *fromRetweetLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *MediaImgConstraint;
 - (IBAction)ReplyPress:(UIButton *)sender;
 - (IBAction)RetweetPress:(UIButton *)sender;
 - (IBAction)FavoritePress:(UIButton *)sender;
@@ -48,6 +49,8 @@
     if (self.tweet.reTweet) {
         showTweet = self.tweet.reTweet;
     }
+    
+    self.MediaImgConstraint.constant = 0;
     self.ProfileImg.layer.cornerRadius = 3;
     self.ProfileImg.clipsToBounds = YES;
     [self.ProfileImg setImageWithURL:[NSURL URLWithString:showTweet.user.profileImg]];
@@ -58,9 +61,11 @@
     self.TweetTextLabel.enabledTextCheckingTypes = NSTextCheckingTypeLink;
     self.TweetTextLabel.delegate = self;
     self.TweetTextLabel.text = showTweet.text;
-    if (self.tweet.tweetMedia)
-        [self.MediaImg setImageWithURL:[NSURL URLWithString:showTweet.tweetMedia]];
     
+    if (self.tweet.tweetMedia){ //has media
+        [self.MediaImg setImageWithURL:[NSURL URLWithString:showTweet.tweetMedia]];
+        self.MediaImgConstraint.constant = 150;
+    }
     self.TimeLabel.text = self.tweet.place ? [NSString stringWithFormat:@"%@ from %@", [showTweet.createdTime formattedDateWithFormat:@"YYYY/MM/dd hh:mm:ss a"], showTweet.place] :
         [showTweet.createdTime formattedDateWithFormat:@"YYYY/MM/dd hh:mm:ss a"];
     self.RetweetLabel.text = [NSString stringWithFormat:@"%d", showTweet.retweetCount];
@@ -73,7 +78,7 @@
     if (self.tweet.reTweet) {
         self.fromRetweetImg.hidden = NO;
         self.fromRetweetLabel.hidden = NO;
-        self.fromRetweetLabel.text = self.tweet.user.screenName;
+        self.fromRetweetLabel.text = [NSString stringWithFormat:@"@%@ Retweet", self.tweet.user.screenName];
     }
 }
 
