@@ -122,6 +122,7 @@
     [[TwitterClient shareInstance] postReTweet:self.tweet.tweetID completion:^(Tweet *tweet, NSError *error) {
         if (error == nil) {
             [self.delegate DetailView:self didRetweet:self.tweet.retweeted];
+            self.RetweetLabel.text = [NSString stringWithFormat:@"%d", self.tweet.retweetCount];
         }
     }];
 }
@@ -129,17 +130,18 @@
 - (IBAction)FavoritePress:(UIButton *)sender {
     self.tweet.favorited = !self.tweet.favorited;
     [self.FavoriteButton setBackgroundImage:[UIImage imageNamed:self.tweet.favorited ? @"favorite_on" : @"favorite"] forState:UIControlStateNormal];
-    self.FavoriteLabel.text = self.tweet.favorited ? [NSString stringWithFormat:@"%d", self.tweet.favoriteCount++] : [NSString stringWithFormat:@"%d", self.tweet.favoriteCount--] ;
     
     //call favorite or unfavorite api
     self.tweet.favorited ? [[TwitterClient shareInstance] Favorite:self.tweet.tweetID completion:^(NSError *error) {
         if (error == nil) {
             [self.delegate DetailView:self didFavorite:self.tweet.favorited];
+            self.FavoriteLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
         }
     }] :
     [[TwitterClient shareInstance] unFavorite:self.tweet.tweetID completion:^(NSError *error) {
         if (error == nil) {
             [self.delegate DetailView:self didFavorite:self.tweet.favorited];
+            self.FavoriteLabel.text = [NSString stringWithFormat:@"%d", self.tweet.favoriteCount];
         }
     }];
 }
