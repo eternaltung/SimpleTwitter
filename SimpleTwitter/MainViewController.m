@@ -15,6 +15,8 @@
 #import "DetailViewController.h"
 #import <UIScrollView+SVPullToRefresh.h>
 #import <UIScrollView+SVInfiniteScrolling.h>
+#import <JVFloatingDrawerViewController.h>
+#import "AppDelegate.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate, DetailViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -52,21 +54,19 @@ NSString * const textReuseID = @"textCell";
 }
 
 - (void)addNavigationBar{
-    //self.navigationController.navigationBarHidden = YES;
     UINavigationBar *navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 55)];
     navbar.tintColor = [UIColor whiteColor];
-    //navbar.backgroundColor = [UIColor colorWithRed:85.0f/255.0f green:172.0f/255.0f blue:238.0f/255.0f alpha:1.0f];
     
     UINavigationItem *navitems = [[UINavigationItem alloc] init];
-    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Logout"] style:UIBarButtonItemStylePlain target:self action:@selector(LogOut)];
+    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(MenuTap)];
     navitems.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"compose"] style:UIBarButtonItemStylePlain target:self action:@selector(composeTweet)];
     navbar.items = @[navitems];
     
     [self.view addSubview:navbar];
 }
 
-- (void)LogOut{
-    [User logout];
+- (void)MenuTap{
+    [[AppDelegate globalDelegate] showLeftDrawer:self animated:YES];
 }
 
 //compose button tap

@@ -10,6 +10,8 @@
 		45DA3EDEB3D81D48B0CA3E7D /* libPods-SimpleTwitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7484A265B78C36A7832FDFA1 /* libPods-SimpleTwitter.a */; };
 		D90977161B4285D5004B25D4 /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D90977151B4285D5004B25D4 /* TTTAttributedLabel.m */; };
 		D90977181B428DAC004B25D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D90977171B428DAC004B25D4 /* CoreLocation.framework */; };
+		D9196B791B47A5C30011143E /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B781B47A5C30011143E /* LeftDrawerViewController.m */; };
+		D9196B7C1B47B98E0011143E /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B7B1B47B98E0011143E /* MeViewController.m */; };
 		D93F38281B3D3C180052010B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F38271B3D3C180052010B /* MainViewController.m */; };
 		D93F382B1B3D3C640052010B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382A1B3D3C640052010B /* LoginViewController.m */; };
 		D93F382F1B3D3D1C0052010B /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382E1B3D3D1C0052010B /* TwitterClient.m */; };
@@ -44,6 +46,10 @@
 		D90977141B4285D5004B25D4 /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
 		D90977151B4285D5004B25D4 /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		D90977171B428DAC004B25D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D9196B771B47A5C30011143E /* LeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftDrawerViewController.h; sourceTree = "<group>"; };
+		D9196B781B47A5C30011143E /* LeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftDrawerViewController.m; sourceTree = "<group>"; };
+		D9196B7A1B47B98E0011143E /* MeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeViewController.h; sourceTree = "<group>"; };
+		D9196B7B1B47B98E0011143E /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		D93F38261B3D3C180052010B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D93F38271B3D3C180052010B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D93F38291B3D3C640052010B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -135,6 +141,10 @@
 				D9B966BB1B3FC6C300E27DA7 /* DetailViewController.m */,
 				D90977141B4285D5004B25D4 /* TTTAttributedLabel.h */,
 				D90977151B4285D5004B25D4 /* TTTAttributedLabel.m */,
+				D9196B771B47A5C30011143E /* LeftDrawerViewController.h */,
+				D9196B781B47A5C30011143E /* LeftDrawerViewController.m */,
+				D9196B7A1B47B98E0011143E /* MeViewController.h */,
+				D9196B7B1B47B98E0011143E /* MeViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -359,10 +369,12 @@
 				D9B966AC1B3E475F00E27DA7 /* User.m in Sources */,
 				D956CC311B3D2FAF0063A169 /* AppDelegate.m in Sources */,
 				D9B966B91B3F099E00E27DA7 /* ComposeViewController.m in Sources */,
+				D9196B791B47A5C30011143E /* LeftDrawerViewController.m in Sources */,
 				D93F382F1B3D3D1C0052010B /* TwitterClient.m in Sources */,
 				D9B966BC1B3FC6C300E27DA7 /* DetailViewController.m in Sources */,
 				D9B966A91B3E475100E27DA7 /* Tweet.m in Sources */,
 				D93F38281B3D3C180052010B /* MainViewController.m in Sources */,
+				D9196B7C1B47B98E0011143E /* MeViewController.m in Sources */,
 				D956CC2E1B3D2FAF0063A169 /* main.m in Sources */,
 				D9B966B01B3EE97E00E27DA7 /* TweetCell.m in Sources */,
 				D90977161B4285D5004B25D4 /* TTTAttributedLabel.m in Sources */,

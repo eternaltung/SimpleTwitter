@@ -10,6 +10,9 @@
 #import "TwitterClient.h"
 #import "MainViewController.h"
 #import "LoginViewController.h"
+#import <JVFloatingDrawerViewController.h>
+#import <JVFloatingDrawerSpringAnimator.h>
+#import "LeftDrawerViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,8 +30,9 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     User *user = [User currentUser];
     if (user != nil) {
-        MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
-        self.window.rootViewController = mainView;
+        //MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+        [self initDrawer];
+        self.window.rootViewController = self.drawerViewController;
     }
     else{
         self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
@@ -41,6 +45,20 @@
 - (void)userLogout{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
+}
+
+- (void)initDrawer{
+    self.drawerViewController = [[JVFloatingDrawerViewController alloc] init];
+    UIImage *img = [UIImage imageNamed:@"bigBG"];
+    self.drawerViewController.backgroundImage = img;
+    self.drawerViewController.animator = [[JVFloatingDrawerSpringAnimator alloc] init];
+    
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+    self.drawerViewController.centerViewController = mainView;
+    
+    LeftDrawerViewController *leftView = [sb instantiateViewControllerWithIdentifier:@"LeftDrawerView"];
+    self.drawerViewController.leftViewController = leftView;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -68,6 +86,15 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     [[TwitterClient shareInstance] openURL:url];
     return YES;
+}
+
+#pragma global function
++ (AppDelegate*)globalDelegate{
+    return (AppDelegate*)[UIApplication sharedApplication].delegate;
+}
+
+- (void)showLeftDrawer:(id)sender animated:(BOOL)animated{
+    [self.drawerViewController toggleDrawerWithSide:JVFloatingDrawerSideLeft animated:animated completion:nil];
 }
 
 @end

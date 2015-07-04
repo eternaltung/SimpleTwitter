@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@class JVFloatingDrawerViewController;
+//@class JVFloatingDrawerSpringAnimator;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) JVFloatingDrawerViewController *drawerViewController;
+//@property (nonatomic, strong) JVFloatingDrawerSpringAnimator *drawerAnimator;
 
+
++ (AppDelegate*)globalDelegate;
+
+- (void)showLeftDrawer:(id)sender animated:(BOOL)animated;
+//- (void)showRightDrawer:(id)sender animated:(BOOL)animated;
 
 @end
 

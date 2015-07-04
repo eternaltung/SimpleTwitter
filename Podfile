@@ -4,5 +4,6 @@ pod 'AFNetworking'
 pod 'BDBOAuth1Manager'
 pod 'SVPullToRefresh'
 pod 'DateTools'
+pod 'JVFloatingDrawer'
 end
 

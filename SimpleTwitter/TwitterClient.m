@@ -47,7 +47,6 @@ NSString * const baseUrl = @"https://api.twitter.com";
 - (void)openURL:(NSURL*)url{
     [self fetchAccessTokenWithPath:@"oauth/access_token" method:@"POST" requestToken:[BDBOAuth1Credential credentialWithQueryString:url.query] success:^(BDBOAuth1Credential *accessToken) {
         [self.requestSerializer saveAccessToken:accessToken];
-        NSLog(@"accessToken:%@",accessToken.token);
         
         //get user
         [self GET:@"1.1/account/verify_credentials.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {

@@ -60,6 +60,12 @@
 #define COCOAPODS_VERSION_MINOR_DateTools 6
 #define COCOAPODS_VERSION_PATCH_DateTools 1
 
+// JVFloatingDrawer
+#define COCOAPODS_POD_AVAILABLE_JVFloatingDrawer
+#define COCOAPODS_VERSION_MAJOR_JVFloatingDrawer 0
+#define COCOAPODS_VERSION_MINOR_JVFloatingDrawer 1
+#define COCOAPODS_VERSION_PATCH_JVFloatingDrawer 0
+
 // SVPullToRefresh
 #define COCOAPODS_POD_AVAILABLE_SVPullToRefresh
 #define COCOAPODS_VERSION_MAJOR_SVPullToRefresh 0

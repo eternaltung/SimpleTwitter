@@ -42,7 +42,48 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="252" y="376"/>
+            <point key="canvasLocation" x="-342" y="382"/>
+        </scene>
+        <!--Left Drawer View Controller-->
+        <scene sceneID="XZE-NZ-Ibr">
+            <objects>
+                <viewController storyboardIdentifier="LeftDrawerView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="U58-Bu-pIq" customClass="LeftDrawerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SEB-M6-nHV"/>
+                        <viewControllerLayoutGuide type="bottom" id="84W-ht-pOm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vMF-St-xhX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1g6-mz-14G">
+                                <rect key="frame" x="0.0" y="50" width="600" height="550"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MenuCell" id="cLh-Sm-zu4">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cLh-Sm-zu4" id="Esl-jN-ZFB">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="84W-ht-pOm" firstAttribute="top" secondItem="1g6-mz-14G" secondAttribute="bottom" id="Thu-19-dvI"/>
+                            <constraint firstItem="1g6-mz-14G" firstAttribute="top" secondItem="vMF-St-xhX" secondAttribute="top" constant="50" id="dKh-sZ-tu6"/>
+                            <constraint firstAttribute="trailing" secondItem="1g6-mz-14G" secondAttribute="trailing" id="gZQ-X9-7Jy"/>
+                            <constraint firstItem="1g6-mz-14G" firstAttribute="leading" secondItem="vMF-St-xhX" secondAttribute="leading" id="kRL-c4-UB4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="1g6-mz-14G" id="atB-jw-akT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KsB-uE-yQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="290" y="382"/>
         </scene>
         <!--Compose View Controller-->
         <scene sceneID="xjO-qb-hzw">
@@ -131,6 +172,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tua-NF-wQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="933" y="-259"/>
+        </scene>
+        <!--Me View Controller-->
+        <scene sceneID="jcq-Va-Ib4">
+            <objects>
+                <viewController storyboardIdentifier="MeView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JnP-iH-9ce" customClass="MeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SK4-8s-hcP"/>
+                        <viewControllerLayoutGuide type="bottom" id="0ep-3E-f3A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F7G-07-xnM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qMz-2p-716" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1618" y="-281"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="0hk-Rh-Xrh">

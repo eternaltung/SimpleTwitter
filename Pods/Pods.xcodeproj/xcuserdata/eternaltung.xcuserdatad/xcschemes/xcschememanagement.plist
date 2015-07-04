@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-SimpleTwitter-JVFloatingDrawer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SimpleTwitter-SVPullToRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,27 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>27DB3BE914D6E1253C0D8A19</key>
+		<key>566393719661899248B2D111</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>59E040339978C566028FC448</key>
+		<key>8F0520A36462326D4798F7B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6CD4DE0EA686A8D2A5996282</key>
+		<key>9AC14CA258DBDEE6CD20A12D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>90E688DA22B86C2236684A1A</key>
+		<key>C3360CADE45BA12B4A99AF49</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DF58F5C9D22E5D46D57E4A15</key>
+		<key>E474E2DDC1775A7F6F82AA05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECF1D579BDA2F5A045FE412F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
