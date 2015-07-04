@@ -1,35 +1,34 @@
 //
-//  MeViewController.m
+//  MentionViewController.m
 //  SimpleTwitter
 //
 //  Created by Shih-Ming Tung on 7/4/15.
 //  Copyright (c) 2015 Shih-Ming. All rights reserved.
 //
 
-#import "MeViewController.h"
-#import "AppDelegate.h"
-#import "TwitterClient.h"
-#import "User.h"
+#import "MentionViewController.h"
 #import "TweetCell.h"
+#import "TwitterClient.h"
+#import "AppDelegate.h"
 
-@interface MeViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (strong, nonatomic) NSMutableArray *tweetArray;
+@interface MentionViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) NSMutableArray *tweetArray;
 @end
 
-@implementation MeViewController
-NSString *selfreuseID = @"TweetCell";
+@implementation MentionViewController
+NSString *reuseID = @"TweetCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addNavigationBar];
-    
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:selfreuseID];
+    [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:reuseID];
     self.tableView.estimatedRowHeight = 100;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self getMentions];
 }
 
 - (void)addNavigationBar{
@@ -43,26 +42,34 @@ NSString *selfreuseID = @"TweetCell";
     [self.view addSubview:navbar];
 }
 
-#pragma tableview delegate
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.tweetArray.count;
+- (void)MenuTap{
+    [[AppDelegate globalDelegate] showLeftDrawer:self animated:YES];
+}
+
+- (void)getMentions{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@(15) forKey:@"count"];
+    
+    [[TwitterClient shareInstance] getMentions:params completion:^(NSArray *tweets, NSError *error) {
+        self.tweetArray = [NSMutableArray arrayWithArray:tweets];
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     Tweet *tweet = self.tweetArray[indexPath.row];
-    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:selfreuseID];
+    TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseID];
     cell.tweet = tweet;
     [cell setUIData];
     return cell;
 }
 
-- (void)MenuTap{
-    [[AppDelegate globalDelegate] showLeftDrawer:self animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.tweetArray.count;
 }
 
 @end

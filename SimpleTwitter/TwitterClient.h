@@ -21,4 +21,5 @@
 - (void)postReTweet:(NSString*)tweetID completion:(void (^)(Tweet *tweet, NSError *error))completion;
 - (void)unFavorite:(NSString*)tweetID completion:(void (^)(NSError *error))completion;
 - (void)Favorite:(NSString*)tweetID completion:(void (^)(NSError *error))completion;
+- (void)getMentions:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
 @end

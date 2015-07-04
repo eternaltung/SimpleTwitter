@@ -123,4 +123,14 @@ NSString * const baseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)getMentions:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion{
+    [self GET:@"1.1/statuses/mentions_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"fail to get mentions tweets");
+        completion(nil, error);
+    }];
+}
+
 @end

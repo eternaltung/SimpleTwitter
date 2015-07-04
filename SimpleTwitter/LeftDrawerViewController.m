@@ -13,6 +13,14 @@
 #import "MeViewController.h"
 #import <JVFloatingDrawerViewController.h>
 #import "MainViewController.h"
+#import "MentionViewController.h"
+
+typedef NS_ENUM(NSInteger, SectionIndex) {
+    Me = 0,
+    HomeTimeLine    = 1,
+    Mentions        = 2,
+    Logout    = 3
+};
 
 @interface LeftDrawerViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -25,9 +33,8 @@ NSString * const identifier = @"MenuCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.textColor = [UIColor whiteColor];
-    [self addHeader];
     
-    self.menuItems = [NSArray arrayWithObjects:@"Me", @"TimeLine", @"Logout", nil];
+    self.menuItems = [NSArray arrayWithObjects:@"Me", @"TimeLine", @"Mentions", @"Logout", nil];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(80, 0.0, 0.0, 0.0);
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -37,7 +44,7 @@ NSString * const identifier = @"MenuCell";
     [self.tableView reloadData];
 }
 
-- (void)addHeader{
+- (UIView*)addMeCell{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 150)];
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 100, 100)];
     img.layer.cornerRadius = 3;
@@ -57,7 +64,7 @@ NSString * const identifier = @"MenuCell";
     subLabel.font = [UIFont systemFontOfSize:16];
     [view addSubview:subLabel];
     
-    self.tableView.tableHeaderView = view;
+    return view;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,11 +74,18 @@ NSString * const identifier = @"MenuCell";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     int fontsize = 20;
+    UITableViewCell *cell;
+    if (indexPath.row == Me) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MeCell"];
+        [cell addSubview:[self addMeCell]];
+    }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+            cell.textLabel.text = self.menuItems[indexPath.row];
+    }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = self.menuItems[indexPath.row];
     cell.textLabel.textColor = self.textColor;
     cell.textLabel.font = [UIFont systemFontOfSize:fontsize];
     return cell;
@@ -81,15 +95,19 @@ NSString * const identifier = @"MenuCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if (indexPath.row == 0) {   //My TimeLine
+    if (indexPath.row == Me) {   //My TimeLine
         MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:meView];
     }
-    else if (indexPath.row == 1){ //Home TimeLine
+    else if (indexPath.row == HomeTimeLine){ //Home TimeLine
         MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:mainView];
     }
-    else if (indexPath.row == 2){   //logout
+    else if (indexPath.row == Mentions){
+        MentionViewController *mentionView = [sb instantiateViewControllerWithIdentifier:@"MentionView"];
+        [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:mentionView];
+    }
+    else if (indexPath.row == Logout){   //logout
         [User logout];
         return;
     }
@@ -100,12 +118,12 @@ NSString * const identifier = @"MenuCell";
     return self.menuItems.count;
 }
 
-/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
-        return 250;
+        return 150;
     }
-    return 70;
-}*/
+    return 50;
+}
 
 /*
 #pragma mark - Navigation

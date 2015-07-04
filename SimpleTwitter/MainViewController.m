@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *tweetArray;
 @property (assign, nonatomic) BOOL isInfiniteLoading;
+
+- (IBAction)HandlePanGesture:(UIPanGestureRecognizer *)sender;
+
 @end
 
 @implementation MainViewController
@@ -222,4 +225,9 @@ NSString * const textReuseID = @"textCell";
 */
 
 
+- (IBAction)HandlePanGesture:(UIPanGestureRecognizer *)sender {
+    if (sender.state == UIGestureRecognizerStateEnded){
+        [self MenuTap];
+    }
+}
 @end
