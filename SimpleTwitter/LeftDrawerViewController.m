@@ -97,6 +97,8 @@ NSString * const identifier = @"MenuCell";
     
     if (indexPath.row == Me) {   //My TimeLine
         MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
+        meView.user = [User currentUser];
+        meView.isComeFromMenu = YES;
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:meView];
     }
     else if (indexPath.row == HomeTimeLine){ //Home TimeLine

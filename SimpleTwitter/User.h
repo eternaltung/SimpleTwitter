@@ -12,7 +12,7 @@
 extern NSString * const userLogoutNotification;
 
 @interface User : NSObject
-@property (assign, nonatomic) int userID;
+@property (strong, nonatomic) NSString *userID;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *profileImg;
@@ -20,6 +20,7 @@ extern NSString * const userLogoutNotification;
 @property (assign, nonatomic) int followersCount;
 @property (assign, nonatomic) int friendsCount;
 @property (strong, nonatomic) NSString *location;
+@property (nonatomic, strong) NSString *profileBannerImg;
 
 - (id)initWithDictionary:(NSDictionary*)dict;
 + (User*)currentUser;

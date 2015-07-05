@@ -48,7 +48,7 @@ NSString *reuseID = @"TweetCell";
 
 - (void)getMentions{
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    [params setObject:@(15) forKey:@"count"];
+    [params setObject:@(20) forKey:@"count"];
     
     [[TwitterClient shareInstance] getMentions:params completion:^(NSArray *tweets, NSError *error) {
         self.tweetArray = [NSMutableArray arrayWithArray:tweets];

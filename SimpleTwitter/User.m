@@ -23,7 +23,7 @@ NSString * const userLogoutNotification = @"userLogoutNotification";
     self = [super init];
     if (self) {
         self.dictionary = dict;
-        self.userID = [dict[@"id"] intValue];
+        self.userID = dict[@"id"];
         self.name = dict[@"name"];
         self.screenName = dict[@"screen_name"];
         self.profileImg = dict[@"profile_image_url"];
@@ -31,6 +31,7 @@ NSString * const userLogoutNotification = @"userLogoutNotification";
         self.followersCount = [dict[@"followers_count"] intValue];
         self.friendsCount = [dict[@"friends_count"] intValue];
         self.location = dict[@"location"];
+        self.profileBannerImg = dict[@"profile_banner_image"];
     }
     return self;
 }

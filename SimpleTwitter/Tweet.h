@@ -26,4 +26,6 @@
 - (id)initWithDictionary:(NSDictionary*)dict;
 
 + (NSArray*)tweetsWithArray:(NSArray*)array;
+
++ (NSArray*)tweetsWithMedia:(NSArray*)array;
 @end

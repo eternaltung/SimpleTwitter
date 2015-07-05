@@ -185,8 +185,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="755" translatesAutoresizingMaskIntoConstraints="NO" id="OOP-aS-3Le">
+                                <rect key="frame" x="0.0" y="55" width="600" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="BcJ-cK-rth"/>
+                                </constraints>
+                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zM8-SK-XZr">
-                                <rect key="frame" x="0.0" y="55" width="600" height="545"/>
+                                <rect key="frame" x="0.0" y="155" width="600" height="445"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TweetCell" id="vIN-XM-aQk">
@@ -201,12 +207,25 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zM8-SK-XZr" secondAttribute="trailing" id="7Xs-wW-2LN"/>
+                            <constraint firstItem="OOP-aS-3Le" firstAttribute="top" secondItem="SK4-8s-hcP" secondAttribute="bottom" constant="35" id="Bcv-sX-yVZ"/>
+                            <constraint firstItem="OOP-aS-3Le" firstAttribute="leading" secondItem="F7G-07-xnM" secondAttribute="leading" id="KdT-XK-Y4u"/>
+                            <constraint firstItem="zM8-SK-XZr" firstAttribute="top" secondItem="OOP-aS-3Le" secondAttribute="bottom" id="Q0q-lc-4hx"/>
                             <constraint firstItem="zM8-SK-XZr" firstAttribute="leading" secondItem="F7G-07-xnM" secondAttribute="leading" id="Tz7-TM-3cV"/>
+                            <constraint firstAttribute="trailing" secondItem="OOP-aS-3Le" secondAttribute="trailing" id="Xmd-Vm-rfV"/>
                             <constraint firstItem="0ep-3E-f3A" firstAttribute="top" secondItem="zM8-SK-XZr" secondAttribute="bottom" id="jxb-e9-vUd"/>
-                            <constraint firstItem="zM8-SK-XZr" firstAttribute="top" secondItem="F7G-07-xnM" secondAttribute="top" constant="55" id="wR5-jq-g06"/>
+                            <constraint firstItem="zM8-SK-XZr" firstAttribute="top" secondItem="F7G-07-xnM" secondAttribute="top" constant="155" id="wR5-jq-g06"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Q0q-lc-4hx"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="BannerImg" destination="OOP-aS-3Le" id="HFH-NY-pW0"/>
+                        <outlet property="BannerImgHeightConstraint" destination="BcJ-cK-rth" id="AHN-Jg-JE2"/>
+                        <outlet property="BannerImgTopConstraint" destination="Bcv-sX-yVZ" id="mKI-et-9gT"/>
+                        <outlet property="TableTopConstraint" destination="wR5-jq-g06" id="OTa-gl-Cu6"/>
                         <outlet property="tableView" destination="zM8-SK-XZr" id="UF1-GL-8MG"/>
                     </connections>
                 </viewController>

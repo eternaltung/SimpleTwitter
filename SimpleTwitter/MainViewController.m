@@ -17,6 +17,7 @@
 #import <UIScrollView+SVInfiniteScrolling.h>
 #import <JVFloatingDrawerViewController.h>
 #import "AppDelegate.h"
+#import "MeViewController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate, DetailViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -45,6 +46,10 @@ NSString * const textReuseID = @"textCell";
     self.isInfiniteLoading = NO;
     [self getHomeTimeLine];
 }
+
+/*- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}*/
 
 - (void)addRefreshControl{
     [self.tableView addPullToRefreshWithActionHandler:^{
@@ -132,6 +137,13 @@ NSString * const textReuseID = @"textCell";
     [self reloadTableRow:[self.tableView indexPathForCell:cell] kind:@"Retweet" value:value];
 }
 
+- (void)TweetCell:(TweetCell *)cell ProfileImgTapped:(User *)user{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
+    meView.user = user;
+    [self showDetailViewController:meView sender:self];
+}
+
 #pragma detail view delegate
 //detail view favorite click
 - (void)DetailView:(DetailViewController *)DetailView didFavorite:(BOOL)value{
@@ -213,17 +225,6 @@ NSString * const textReuseID = @"textCell";
     [self showDetailViewController:detailview sender:self];
     
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 
 - (IBAction)HandlePanGesture:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateEnded){

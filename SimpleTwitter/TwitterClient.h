@@ -22,4 +22,7 @@
 - (void)unFavorite:(NSString*)tweetID completion:(void (^)(NSError *error))completion;
 - (void)Favorite:(NSString*)tweetID completion:(void (^)(NSError *error))completion;
 - (void)getMentions:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion;
+- (void)getUserBanner:(NSString *)userID completion:(void (^)(NSDictionary *bannerData, NSError *error))completion;
+- (void)getUserFavorites:(NSDictionary *)params completion:(void (^)(NSArray *array, NSError *error))completion;
+- (void)getUserMedia:(NSDictionary *)params completion:(void (^)(NSArray *array, NSError *error))completion;
 @end

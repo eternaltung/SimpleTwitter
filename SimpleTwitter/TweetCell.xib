@@ -107,7 +107,7 @@
                             <constraint firstAttribute="height" constant="16" id="u8P-c5-Sn1"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DGU-Lw-lc6">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DGU-Lw-lc6">
                         <rect key="frame" x="8" y="25" width="50" height="50"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Yeg-xl-E0v"/>

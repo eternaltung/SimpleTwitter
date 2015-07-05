@@ -13,6 +13,8 @@
 		D9196B791B47A5C30011143E /* LeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B781B47A5C30011143E /* LeftDrawerViewController.m */; };
 		D9196B7C1B47B98E0011143E /* MeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B7B1B47B98E0011143E /* MeViewController.m */; };
 		D9196B7F1B480C240011143E /* MentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B7E1B480C240011143E /* MentionViewController.m */; };
+		D9196B891B4836CA0011143E /* UserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B871B4836CA0011143E /* UserProfileCell.m */; };
+		D9196B8A1B4836CA0011143E /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9196B881B4836CA0011143E /* UserProfileCell.xib */; };
 		D93F38281B3D3C180052010B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F38271B3D3C180052010B /* MainViewController.m */; };
 		D93F382B1B3D3C640052010B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382A1B3D3C640052010B /* LoginViewController.m */; };
 		D93F382F1B3D3D1C0052010B /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382E1B3D3D1C0052010B /* TwitterClient.m */; };
@@ -53,6 +55,9 @@
 		D9196B7B1B47B98E0011143E /* MeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeViewController.m; sourceTree = "<group>"; };
 		D9196B7D1B480C240011143E /* MentionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MentionViewController.h; sourceTree = "<group>"; };
 		D9196B7E1B480C240011143E /* MentionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MentionViewController.m; sourceTree = "<group>"; };
+		D9196B861B4836CA0011143E /* UserProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCell.h; sourceTree = "<group>"; };
+		D9196B871B4836CA0011143E /* UserProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCell.m; sourceTree = "<group>"; };
+		D9196B881B4836CA0011143E /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
 		D93F38261B3D3C180052010B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D93F38271B3D3C180052010B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D93F38291B3D3C640052010B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -127,6 +132,9 @@
 				D9B966AD1B3EE97E00E27DA7 /* TweetCell.h */,
 				D9B966AE1B3EE97E00E27DA7 /* TweetCell.m */,
 				D9B966AF1B3EE97E00E27DA7 /* TweetCell.xib */,
+				D9196B861B4836CA0011143E /* UserProfileCell.h */,
+				D9196B871B4836CA0011143E /* UserProfileCell.m */,
+				D9196B881B4836CA0011143E /* UserProfileCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -320,6 +328,7 @@
 				D956CC3C1B3D2FAF0063A169 /* LaunchScreen.xib in Resources */,
 				D956CC391B3D2FAF0063A169 /* Images.xcassets in Resources */,
 				D9B966B11B3EE97E00E27DA7 /* TweetCell.xib in Resources */,
+				D9196B8A1B4836CA0011143E /* UserProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +384,7 @@
 				D956CC311B3D2FAF0063A169 /* AppDelegate.m in Sources */,
 				D9196B7F1B480C240011143E /* MentionViewController.m in Sources */,
 				D9B966B91B3F099E00E27DA7 /* ComposeViewController.m in Sources */,
+				D9196B891B4836CA0011143E /* UserProfileCell.m in Sources */,
 				D9196B791B47A5C30011143E /* LeftDrawerViewController.m in Sources */,
 				D93F382F1B3D3D1C0052010B /* TwitterClient.m in Sources */,
 				D9B966BC1B3FC6C300E27DA7 /* DetailViewController.m in Sources */,

@@ -133,4 +133,35 @@ NSString * const baseUrl = @"https://api.twitter.com";
     }];
 }
 
+- (void)getUserBanner:(NSString *)userID completion:(void (^)(NSDictionary *bannerData, NSError *error))completion{
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    [params setObject:@([userID integerValue]) forKey:@"user_id"];
+    [self GET:@"1.1/users/profile_banner.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        completion(responseObject, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        //NSLog(@"failed to get banner");
+        completion(nil, error);
+    }];
+}
+
+- (void)getUserFavorites:(NSDictionary *)params completion:(void (^)(NSArray *array, NSError *error))completion{
+    [self GET:@"1.1/favorites/list.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get favorite");
+        completion(nil, error);
+    }];
+}
+
+- (void)getUserMedia:(NSDictionary *)param completion:(void (^)(NSArray *array, NSError *error))completion{
+    [self GET:@"1.1/statuses/user_timeline.json" parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *tweets = [Tweet tweetsWithMedia:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"fail to get media timeline");
+        completion(nil, error);
+    }];
+}
+
 @end

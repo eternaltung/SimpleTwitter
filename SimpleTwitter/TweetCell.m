@@ -42,6 +42,12 @@
 - (void)awakeFromNib {
     self.UserImg.layer.cornerRadius = 3;
     self.UserImg.clipsToBounds = YES;
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+}
+
+- (void)profileImgTap{
+    self.tweet.reTweet ? [self.delegate TweetCell:self ProfileImgTapped:self.tweet.reTweet.user] : [self.delegate TweetCell:self ProfileImgTapped:self.tweet.user];
+    
 }
 
 - (void)layoutSubviews {
@@ -76,8 +82,15 @@
     
     [self.UserImg setImage:nil];
     [self.UserImg setImageWithURL:[NSURL URLWithString:showTweet.user.profileImg]];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profileImgTap)];
+    /*tapGesture.cancelsTouchesInView = YES;
+    [tapGesture setNumberOfTouchesRequired:1];
+    [tapGesture setNumberOfTapsRequired:1];*/
+    [self.UserImg addGestureRecognizer:tapGesture];
+    
     [self.MediaImg setImage:nil];
     if (self.tweet.tweetMedia != nil) {
+        self.MediaImgConstraint.constant = 130.0;
         [self.MediaImg setImageWithURL:[NSURL URLWithString:showTweet.tweetMedia]];
     }
     else{
