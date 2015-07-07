@@ -15,6 +15,7 @@
 		D9196B7F1B480C240011143E /* MentionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B7E1B480C240011143E /* MentionViewController.m */; };
 		D9196B891B4836CA0011143E /* UserProfileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9196B871B4836CA0011143E /* UserProfileCell.m */; };
 		D9196B8A1B4836CA0011143E /* UserProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9196B881B4836CA0011143E /* UserProfileCell.xib */; };
+		D932FB941B4BFE2D0024C999 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D932FB931B4BFE2D0024C999 /* ImageViewController.m */; };
 		D93F38281B3D3C180052010B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F38271B3D3C180052010B /* MainViewController.m */; };
 		D93F382B1B3D3C640052010B /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382A1B3D3C640052010B /* LoginViewController.m */; };
 		D93F382F1B3D3D1C0052010B /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D93F382E1B3D3D1C0052010B /* TwitterClient.m */; };
@@ -58,6 +59,8 @@
 		D9196B861B4836CA0011143E /* UserProfileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCell.h; sourceTree = "<group>"; };
 		D9196B871B4836CA0011143E /* UserProfileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCell.m; sourceTree = "<group>"; };
 		D9196B881B4836CA0011143E /* UserProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCell.xib; sourceTree = "<group>"; };
+		D932FB921B4BFE2D0024C999 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		D932FB931B4BFE2D0024C999 /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		D93F38261B3D3C180052010B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		D93F38271B3D3C180052010B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		D93F38291B3D3C640052010B /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -158,6 +161,8 @@
 				D9196B7B1B47B98E0011143E /* MeViewController.m */,
 				D9196B7D1B480C240011143E /* MentionViewController.h */,
 				D9196B7E1B480C240011143E /* MentionViewController.m */,
+				D932FB921B4BFE2D0024C999 /* ImageViewController.h */,
+				D932FB931B4BFE2D0024C999 /* ImageViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 			files = (
 				D93F382B1B3D3C640052010B /* LoginViewController.m in Sources */,
 				D9B966AC1B3E475F00E27DA7 /* User.m in Sources */,
+				D932FB941B4BFE2D0024C999 /* ImageViewController.m in Sources */,
 				D956CC311B3D2FAF0063A169 /* AppDelegate.m in Sources */,
 				D9196B7F1B480C240011143E /* MentionViewController.m in Sources */,
 				D9B966B91B3F099E00E27DA7 /* ComposeViewController.m in Sources */,

@@ -47,7 +47,10 @@
 
 - (void)profileImgTap{
     self.tweet.reTweet ? [self.delegate TweetCell:self ProfileImgTapped:self.tweet.reTweet.user] : [self.delegate TweetCell:self ProfileImgTapped:self.tweet.user];
-    
+}
+
+- (void)mediaImgTap{
+    [self.delegate TweetCell:self mediaImgTapped:self.tweet.reTweet ? self.tweet.reTweet : self.tweet];
 }
 
 - (void)layoutSubviews {
@@ -92,6 +95,8 @@
     if (self.tweet.tweetMedia != nil) {
         self.MediaImgConstraint.constant = 130.0;
         [self.MediaImg setImageWithURL:[NSURL URLWithString:showTweet.tweetMedia]];
+        UITapGestureRecognizer *mediaTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(mediaImgTap)];
+        [self.MediaImg addGestureRecognizer:mediaTapGesture];
     }
     else{
         self.MediaImgConstraint.constant = 0.0;

@@ -103,7 +103,9 @@ NSString *profilereuseID = @"ProfileCell";
     navbar.tintColor = [UIColor whiteColor];
     
     UINavigationItem *navitems = [[UINavigationItem alloc] init];
-    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(MenuTap)];
+
+    //show menu or back icon
+    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:self.isComeFromMenu ? @"menu" : @"back"] style:UIBarButtonItemStylePlain target:self action:@selector(MenuTap)];
     navbar.items = @[navitems];
     
     [self.view addSubview:navbar];
@@ -175,20 +177,40 @@ NSString *profilereuseID = @"ProfileCell";
             self.TableTopConstraint.constant = 155 + translation.y;
             self.BannerImgHeightConstraint.constant = 100 + translation.y;
         }
-        //NSLog(@"change:%f",translation.y);
+        else if (self.BannerImgHeightConstraint.constant > 50){
+            //scroll down
+            self.TableTopConstraint.constant = 155 + translation.y;
+            self.BannerImgHeightConstraint.constant = 100 + translation.y;
+            //NSLog(@"offset:%f",self.tableView.contentOffset.y);
+            //NSLog(@"tran:%f",translation.y);
+        }
+        else if (self.BannerImgHeightConstraint.constant <= 50 ){
+            //add blur if scroll down more than 50
+            
+            if (self.tableView.contentOffset.y <= 50) {
+                //restore blur and size
+                //NSLog(@"con:%f",self.tableView.contentOffset.y);
+                self.TableTopConstraint.constant = self.TableTopConstraint.constant + self.tableView.contentOffset.y;
+                self.BannerImgHeightConstraint.constant = self.BannerImgHeightConstraint.constant + self.tableView.contentOffset.y;
+                [self.blurView removeFromSuperview];
+                self.isBannerBlur = NO;
+            }
+            else{
+                [self addBlurEffectView];
+            }
+        }
     }
     else if (sender.state == UIGestureRecognizerStateEnded){
-        NSIndexPath *visibleIndexPath = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
-        if (visibleIndexPath.row <= 3) {
+        //NSIndexPath *visibleIndexPath = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
+        if (self.BannerImgHeightConstraint.constant > 100 ) {
             self.TableTopConstraint.constant = 155;
             self.BannerImgHeightConstraint.constant = 100;
         }
-        //NSLog(@"end:%f",translation.y);
     }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    NSIndexPath *visibleIndexPath = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
+    /*NSIndexPath *visibleIndexPath = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
 
     if (visibleIndexPath.row > 3){
         [self addBlurEffectView];
@@ -196,18 +218,33 @@ NSString *profilereuseID = @"ProfileCell";
     else{
         [self.blurView removeFromSuperview];
         self.isBannerBlur = NO;
-    }
+    }*/
 }
 
 - (void)addBlurEffectView{
     if (!self.isBannerBlur) {
         self.isBannerBlur = YES;
-        self.BannerImgHeightConstraint.constant = 50;
-        self.TableTopConstraint.constant = 105;
+        //self.BannerImgHeightConstraint.constant = 50;
+        //self.TableTopConstraint.constant = 105;
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         self.blurView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
         [self.blurView setFrame:self.BannerImg.bounds];
+        
+        UILabel *label = [UILabel new];
+        label.text = self.user.name;
+        label.center = self.BannerImg.center;
+        label.textAlignment = NSTextAlignmentCenter;
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont boldSystemFontOfSize:20];
+        label.frame = self.blurView.bounds;
+        
+        UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:blurEffect]];
+        //vibrancyEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+        vibrancyEffectView.frame = self.blurView.bounds;
+        [vibrancyEffectView addSubview: label];
+        [self.blurView.contentView addSubview:vibrancyEffectView];
         [self.BannerImg addSubview:self.blurView];
+        NSLog(@"%f",label.frame.size.width);
     }
 }
 

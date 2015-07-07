@@ -18,6 +18,7 @@
 #import <JVFloatingDrawerViewController.h>
 #import "AppDelegate.h"
 #import "MeViewController.h"
+#import "ImageViewController.h"
 
 @interface MainViewController () <UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate, TweetCellDelegate, DetailViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -137,11 +138,20 @@ NSString * const textReuseID = @"textCell";
     [self reloadTableRow:[self.tableView indexPathForCell:cell] kind:@"Retweet" value:value];
 }
 
+//click cell profile img
 - (void)TweetCell:(TweetCell *)cell ProfileImgTapped:(User *)user{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
     meView.user = user;
     [self showDetailViewController:meView sender:self];
+}
+
+//click cell media img
+- (void)TweetCell:(TweetCell *)cell mediaImgTapped:(Tweet *)tweet{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ImageViewController *imgView = [sb instantiateViewControllerWithIdentifier:@"ImageView"];
+    imgView.tweet = tweet;
+    [self showDetailViewController:imgView sender:self];
 }
 
 #pragma detail view delegate

@@ -87,7 +87,7 @@
     navbar.tintColor = [UIColor whiteColor];
     
     UINavigationItem *navitems = [[UINavigationItem alloc] init];
-    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"<" style:UIBarButtonItemStylePlain target:self action:@selector(canelTap)];
+    navitems.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"] style:UIBarButtonItemStylePlain target:self action:@selector(canelTap)];
     navbar.items = @[navitems];
     
     [self.view addSubview:navbar];
