@@ -10,6 +10,10 @@
 #import "TwitterClient.h"
 #import "Tweet.h"
 #import "User.h"
+#import "AppDelegate.h"
+#import <JVFloatingDrawerViewController.h>
+#import "MainViewController.h"
+#import "LeftDrawerViewController.h"
 
 @interface LoginViewController ()
 @property (strong, nonatomic) User *user;
@@ -22,30 +26,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 - (IBAction)LoginTap:(UIButton *)sender {
     [[TwitterClient shareInstance] loginCompleted:^(User *user, NSError *error) {
         if (user != nil) {  //login success
             self.user = user;
             UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            [self presentViewController:[sb instantiateViewControllerWithIdentifier:@"MainView"] animated:YES completion:nil];
+            LeftDrawerViewController *leftView = [sb instantiateViewControllerWithIdentifier:@"LeftDrawerView"];
+            [[[AppDelegate globalDelegate] drawerViewController] setLeftViewController:leftView];
+            MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+            [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:mainView];
         }
         else{   //error
             

@@ -27,16 +27,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userLogout) name:userLogoutNotification object:nil];
     
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    User *user = [User currentUser];
-    if (user != nil) {
-        //MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
-        [self initDrawer];
-        self.window.rootViewController = self.drawerViewController;
-    }
-    else{
-        self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
-    }
+    [self initDrawer];
+    self.window.rootViewController = self.drawerViewController;
     
     [self.window makeKeyAndVisible];
     return YES;
@@ -44,7 +36,9 @@
 
 - (void)userLogout{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    self.window.rootViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
+    self.drawerViewController.centerViewController = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
+    self.window.rootViewController = self.drawerViewController;
+    [self showLeftDrawer:self animated:YES];
 }
 
 - (void)initDrawer{
@@ -54,11 +48,16 @@
     self.drawerViewController.animator = [[JVFloatingDrawerSpringAnimator alloc] init];
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
-    self.drawerViewController.centerViewController = mainView;
-    
-    LeftDrawerViewController *leftView = [sb instantiateViewControllerWithIdentifier:@"LeftDrawerView"];
-    self.drawerViewController.leftViewController = leftView;
+    if ([User currentUser] != nil) {
+        MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
+        self.drawerViewController.centerViewController = mainView;
+        LeftDrawerViewController *leftView = [sb instantiateViewControllerWithIdentifier:@"LeftDrawerView"];
+        self.drawerViewController.leftViewController = leftView;
+    }
+    else{
+        LoginViewController *loginView = [sb instantiateViewControllerWithIdentifier:@"LoginView"];
+        self.drawerViewController.centerViewController = loginView;
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
