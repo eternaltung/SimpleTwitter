@@ -13,6 +13,7 @@
 
 @protocol TweetCellDelegate <NSObject>
 
+@optional
 - (void)TweetCell:(TweetCell*)cell didRetweet:(BOOL)value;
 - (void)TweetReplyCell:(TweetCell*)cell;
 - (void)TweetCell:(TweetCell*)cell didFavorite:(BOOL)value;

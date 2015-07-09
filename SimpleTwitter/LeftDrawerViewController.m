@@ -25,6 +25,7 @@ typedef NS_ENUM(NSInteger, SectionIndex) {
 @interface LeftDrawerViewController () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *menuItems;
+@property (strong, nonatomic) NSArray *menuIcons;
 @property (strong, nonatomic) UIColor *textColor;
 @end
 
@@ -35,8 +36,10 @@ NSString * const identifier = @"MenuCell";
     self.textColor = [UIColor whiteColor];
     
     self.menuItems = [NSArray arrayWithObjects:@"Me", @"TimeLine", @"Mentions", @"Logout", nil];
+    self.menuIcons = [NSArray arrayWithObjects:@"", @"home", @"mention", @"Logout", nil];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.contentInset = UIEdgeInsetsMake(80, 0.0, 0.0, 0.0);
+    //transparent background
     self.tableView.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor clearColor];
     self.tableView.dataSource = self;
@@ -44,6 +47,7 @@ NSString * const identifier = @"MenuCell";
     [self.tableView reloadData];
 }
 
+//myself cell
 - (UIView*)addMeCell{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 150)];
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 100, 100)];
@@ -81,7 +85,8 @@ NSString * const identifier = @"MenuCell";
     }
     else{
         cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-            cell.textLabel.text = self.menuItems[indexPath.row];
+        cell.textLabel.text = self.menuItems[indexPath.row];
+        cell.imageView.image = [UIImage imageNamed:self.menuIcons[indexPath.row]];
     }
     
     cell.backgroundColor = [UIColor clearColor];
@@ -95,21 +100,25 @@ NSString * const identifier = @"MenuCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
-    if (indexPath.row == Me) {   //My TimeLine
+    if (indexPath.row == Me) {
+        //My TimeLine
         MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
         meView.user = [User currentUser];
         meView.isComeFromMenu = YES;
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:meView];
     }
-    else if (indexPath.row == HomeTimeLine){ //Home TimeLine
+    else if (indexPath.row == HomeTimeLine){
+        //Home TimeLine
         MainViewController *mainView = [sb instantiateViewControllerWithIdentifier:@"MainView"];
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:mainView];
     }
     else if (indexPath.row == Mentions){
+        //mention TimeLine
         MentionViewController *mentionView = [sb instantiateViewControllerWithIdentifier:@"MentionView"];
         [[[AppDelegate globalDelegate] drawerViewController] setCenterViewController:mentionView];
     }
-    else if (indexPath.row == Logout){   //logout
+    else if (indexPath.row == Logout){
+        //logout
         [User logout];
         return;
     }
@@ -126,15 +135,5 @@ NSString * const identifier = @"MenuCell";
     }
     return 50;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

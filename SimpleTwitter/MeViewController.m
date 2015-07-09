@@ -16,8 +16,9 @@
 #import "MainViewController.h"
 #import "AppDelegate.h"
 #import <JVFloatingDrawerViewController.h>
+#import "ImageViewController.h"
 
-@interface MeViewController () <UITableViewDelegate, UITableViewDataSource, UserProfileCellDelegate, UIGestureRecognizerDelegate>
+@interface MeViewController () <UITableViewDelegate, UITableViewDataSource, UserProfileCellDelegate, UIGestureRecognizerDelegate, TweetCellDelegate>
 @property (strong, nonatomic) NSMutableArray *tweetArray;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *BannerImg;
@@ -149,6 +150,7 @@ NSString *profilereuseID = @"ProfileCell";
     
     Tweet *tweet = self.tweetArray[(int)indexPath.row - 1];
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:selfreuseID];
+    cell.delegate = self;
     cell.tweet = tweet;
     [cell setUIData];
     return cell;
@@ -189,7 +191,6 @@ NSString *profilereuseID = @"ProfileCell";
             
             if (self.tableView.contentOffset.y <= 50) {
                 //restore blur and size
-                //NSLog(@"con:%f",self.tableView.contentOffset.y);
                 self.TableTopConstraint.constant = self.TableTopConstraint.constant + self.tableView.contentOffset.y;
                 self.BannerImgHeightConstraint.constant = self.BannerImgHeightConstraint.constant + self.tableView.contentOffset.y;
                 [self.blurView removeFromSuperview];
@@ -210,15 +211,7 @@ NSString *profilereuseID = @"ProfileCell";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    /*NSIndexPath *visibleIndexPath = [[self.tableView indexPathsForVisibleRows] objectAtIndex:0];
 
-    if (visibleIndexPath.row > 3){
-        [self addBlurEffectView];
-    }
-    else{
-        [self.blurView removeFromSuperview];
-        self.isBannerBlur = NO;
-    }*/
 }
 
 - (void)addBlurEffectView{
@@ -239,12 +232,36 @@ NSString *profilereuseID = @"ProfileCell";
         label.frame = self.blurView.bounds;
         
         UIVisualEffectView *vibrancyEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIVibrancyEffect effectForBlurEffect:blurEffect]];
-        //vibrancyEffectView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         vibrancyEffectView.frame = self.blurView.bounds;
         [vibrancyEffectView addSubview: label];
         [self.blurView.contentView addSubview:vibrancyEffectView];
         [self.BannerImg addSubview:self.blurView];
-        NSLog(@"%f",label.frame.size.width);
+    }
+}
+
+#pragma cell delegate
+- (void)TweetCell:(TweetCell *)cell mediaImgTapped:(Tweet *)tweet{
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ImageViewController *imgView = [sb instantiateViewControllerWithIdentifier:@"ImageView"];
+    imgView.tweet = tweet;
+    [self showDetailViewController:imgView sender:self];
+}
+
+- (void)TweetCell:(TweetCell *)cell ProfileImgTapped:(User *)user{
+    if ([self.user.screenName isEqualToString:user.screenName]) {
+        //same profile page
+        CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+        animation.values = @[[ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(-10.0f, 0.0f, 0.0f) ], [ NSValue valueWithCATransform3D:CATransform3DMakeTranslation(10.0f, 0.0f, 0.0f)]];
+        animation.autoreverses = YES;
+        animation.repeatCount = 2.0f;
+        animation.duration = 0.06f;
+        [self.view.layer addAnimation:animation forKey:nil];
+    }
+    else{
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        MeViewController *meView = [sb instantiateViewControllerWithIdentifier:@"MeView"];
+        meView.user = user;
+        [self showDetailViewController:meView sender:self];
     }
 }
 

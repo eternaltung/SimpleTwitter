@@ -19,15 +19,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setUIData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self setUIData];
+}
+
 - (void)setUIData{
-    [self.MediaImg setImageWithURL:[NSURL URLWithString:self.tweet.tweetMedia]];
+    [self.MediaImg setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.tweet.tweetMedia]] placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        self.MediaImg.alpha = 0;
+        self.MediaImg.transform = CGAffineTransformMakeScale(0.4, 0.4);
+        self.MediaImg.image = image;
+        [UIView animateWithDuration:0.4 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.MediaImg.transform = CGAffineTransformMakeScale(1.0, 1.0);
+            self.MediaImg.alpha = 1;
+        } completion:nil];
+    } failure:nil];
 }
 
 - (IBAction)BackPress:(UIButton *)sender {
